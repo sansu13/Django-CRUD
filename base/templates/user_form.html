@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Form</title>
+</head>
+<body>
+
+  <h2>User Form</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label for="first_name">First Name:</label><br>
+    <input type="text" name="first_name" id="first_name" value="{{ user.first_name|default_if_none:'' }}"><br><br>
+
+    <label for="last_name">Last Name:</label><br>
+    <input type="text" name="last_name" id="last_name" value="{{ user.last_name|default_if_none:'' }}"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" value="{{ user.email|default_if_none:'' }}"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" id="password" value="{{ user.password|default_if_none:'' }}"><br><br>
+
+    <label for="is_active">
+      <input type="checkbox" name="is_active" id="is_active" {% if user.is_active %}checked{% endif %}>
+      Active
+    </label><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
